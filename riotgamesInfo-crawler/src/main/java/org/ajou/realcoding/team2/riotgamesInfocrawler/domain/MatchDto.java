@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
+@Data
 public class MatchDto {
     private List<ParticipantIdentityDto> participantIdentities;
     private List<ParticipantDto> participants;

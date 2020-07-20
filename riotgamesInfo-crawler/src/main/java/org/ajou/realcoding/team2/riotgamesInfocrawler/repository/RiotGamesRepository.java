@@ -87,8 +87,6 @@ public class RiotGamesRepository {
         //MatchDto matchDto = new MatchDto();//배열로 만들기
         List<MatchDto> matchDto = new ArrayList<>();
 
-
-
         Query query = Query.query(Criteria.where("_id").is(summonerName));
         FinalGameInformation finalGameInformation = finalGameInformationDb.findOne(query, FinalGameInformation.class);
 
@@ -97,8 +95,7 @@ public class RiotGamesRepository {
 
 
             List<String> fiveGame = new ArrayList<>();
-            int participantId =0 ;
-            int championId =0;
+            int participantId;
 
 
             ArrayList<FinalGameInformation.GameDetail> gameDetailArrayList = new ArrayList<>();
@@ -126,7 +123,6 @@ public class RiotGamesRepository {
             for(int g=0;g<5;g++) {
                 matchDto.add(riotGamesOpenApiClient.getMatchDtoInfo(fiveGame.get(g)));
                 matchDtoDb.save(matchDto.get(g));
-                //log.info("matchId : {}", fiveGame.get(g));
 
                 for (int k = 0; k < 10; k++) {
 
@@ -136,11 +132,7 @@ public class RiotGamesRepository {
                         participantId = matchDto.get(g).getParticipantIdentities().get(k).getParticipantId();
 
 
-                        championId = matchDto.get(g).getParticipants().get(participantId - 1).getChampionId();
-
-
-                        gameDetail.setChampionId(championId);
-
+                        gameDetail.setChampionId(matchDto.get(g).getParticipants().get(participantId - 1).getChampionId());
                         gameDetail.setKills(matchDto.get(g).getParticipants().get(participantId - 1).getStats().getKills());
                         gameDetail.setAssists(matchDto.get(g).getParticipants().get(participantId - 1).getStats().getAssists());
                         gameDetail.setDeaths(matchDto.get(g).getParticipants().get(participantId - 1).getStats().getDeaths());
@@ -155,6 +147,7 @@ public class RiotGamesRepository {
                         // 전적 조회시 participantId 필요
                         //return saveFinalGameInformation;
                     }
+
 
                 }
                 //log.info("gamedetailArray222222 {}", gameDetailArrayList);
@@ -177,6 +170,5 @@ public class RiotGamesRepository {
     }
 
 
-        return null;
-    }
+
 }
