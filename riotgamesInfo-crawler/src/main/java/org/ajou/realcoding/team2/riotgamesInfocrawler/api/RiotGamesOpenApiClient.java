@@ -1,6 +1,7 @@
 package org.ajou.realcoding.team2.riotgamesInfocrawler.api;
 
 import org.ajou.realcoding.team2.riotgamesInfocrawler.domain.LeagueEntryDto;
+import org.ajou.realcoding.team2.riotgamesInfocrawler.domain.MatchDto;
 import org.ajou.realcoding.team2.riotgamesInfocrawler.domain.MatchListDto;
 import org.ajou.realcoding.team2.riotgamesInfocrawler.domain.SummonerDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ public class RiotGamesOpenApiClient {
     private static final String SUMMONERINFO_REQUEST = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key=RGAPI-6f79e5cf-4faf-4ca9-b519-86cfc297390b";
     private static final String LEAGUEINFO_REQUEST = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerId}?api_key=RGAPI-6f79e5cf-4faf-4ca9-b519-86cfc297390b";
     private static final String GAMEINFO_REQUEST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?api_key=RGAPI-6f79e5cf-4faf-4ca9-b519-86cfc297390b";
+    private static final String MATCHGAME_REQUEST = "https://kr.api.riotgames.com/lol/match/v4/matches/{matchId}?api_key=RGAPI-2c484922-2e11-4acc-a79d-a1cb78210959";
 
     public SummonerDto getSummonerInfo(String summonerName){
         SummonerDto summoner = restTemplate.getForObject(SUMMONERINFO_REQUEST, SummonerDto.class, summonerName);
@@ -32,6 +34,12 @@ public class RiotGamesOpenApiClient {
     public MatchListDto getGameInfo(String accountId){
         MatchListDto game = restTemplate.getForObject(GAMEINFO_REQUEST, MatchListDto.class, accountId);
         return game;
+    }
+
+    public MatchDto getMatchDtoInfo(String matchId){
+        MatchDto matchDto = restTemplate.getForObject(MATCHGAME_REQUEST, MatchDto.class, matchId);
+
+        return matchDto;
     }
 
 }
