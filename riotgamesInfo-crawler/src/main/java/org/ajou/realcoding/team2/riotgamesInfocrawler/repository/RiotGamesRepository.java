@@ -67,6 +67,7 @@ public class RiotGamesRepository {
     public void saveGameInfo(MatchListDto game){
 
         MatchListDto savedGame = matchListDtoDb.save(game);
+        log.info("gameA1111111111111111111111 : {}", game);
     }
 
     public MatchListDto getGameInfo(String summonerName) {
