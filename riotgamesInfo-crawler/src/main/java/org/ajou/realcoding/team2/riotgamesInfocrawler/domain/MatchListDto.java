@@ -7,8 +7,7 @@ import java.util.List;
 
 @Data
 public class MatchListDto {
-    @Id
-    private String accountId;
+
     private List<Matches> matches;
     @Data
     public static class Matches{

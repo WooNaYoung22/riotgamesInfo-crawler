@@ -1,5 +1,6 @@
 package org.ajou.realcoding.team2.riotgamesInfocrawler.repository;
 
+import lombok.extern.slf4j.Slf4j;
 import org.ajou.realcoding.team2.riotgamesInfocrawler.api.RiotGamesOpenApiClient;
 import org.ajou.realcoding.team2.riotgamesInfocrawler.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Repository
 public class RiotGamesRepository {
 
@@ -73,7 +75,8 @@ public class RiotGamesRepository {
         MatchListDto gameA = matchListDtoDb.findOne(query, MatchListDto.class);
         if(gameA == null){
             MatchListDto game = riotGamesOpenApiClient.getGameInfo(summoner.getAccountId());
-            game.setAccountId(summoner.getAccountId());
+            //game.setAccountId(summoner.getAccountId());
+            log.info("gameA : {}", game);
             saveGameInfo(game);
             return game;
         }
@@ -81,6 +84,7 @@ public class RiotGamesRepository {
             return gameA;
         }
     }
+
 
 
     public FinalGameInformation findFinalGameInformation(String summonerName) {
@@ -166,6 +170,7 @@ public class RiotGamesRepository {
 
 
         }
+        log.info("finalGameInformation :: {}", finalGameInformation);
         return finalGameInformation;
     }
 

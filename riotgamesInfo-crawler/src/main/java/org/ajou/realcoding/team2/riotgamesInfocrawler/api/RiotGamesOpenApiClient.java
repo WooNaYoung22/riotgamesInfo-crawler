@@ -13,10 +13,10 @@ public class RiotGamesOpenApiClient {
     @Autowired
     private RestTemplate restTemplate;
 
-    private static final String SUMMONERINFO_REQUEST = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key=RGAPI-6f79e5cf-4faf-4ca9-b519-86cfc297390b";
-    private static final String LEAGUEINFO_REQUEST = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerId}?api_key=RGAPI-6f79e5cf-4faf-4ca9-b519-86cfc297390b";
-    private static final String GAMEINFO_REQUEST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?api_key=RGAPI-6f79e5cf-4faf-4ca9-b519-86cfc297390b";
-    private static final String MATCHGAME_REQUEST = "https://kr.api.riotgames.com/lol/match/v4/matches/{matchId}?api_key=RGAPI-2c484922-2e11-4acc-a79d-a1cb78210959";
+    private static final String SUMMONERINFO_REQUEST = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{summonerName}?api_key=RGAPI-5daef592-1554-4e1c-9a2f-57f20554e167";
+    private static final String LEAGUEINFO_REQUEST = "https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/{summonerId}?api_key=RGAPI-5daef592-1554-4e1c-9a2f-57f20554e167";
+    private static final String GAMEINFO_REQUEST = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/{accountId}?api_key=RGAPI-5daef592-1554-4e1c-9a2f-57f20554e167";
+    private static final String MATCHGAME_REQUEST = "https://kr.api.riotgames.com/lol/match/v4/matches/{matchId}?api_key=RGAPI-5daef592-1554-4e1c-9a2f-57f20554e167";
 
     public SummonerDto getSummonerInfo(String summonerName){
         SummonerDto summoner = restTemplate.getForObject(SUMMONERINFO_REQUEST, SummonerDto.class, summonerName);
